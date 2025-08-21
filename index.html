@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de namoro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrap">
+    <div class="card">
+    <h1>Área restrita por geolocalização</h1>
+    <p>Este site só habilita o conteúdo quando você está dentro de um raio específico a partir de uma latitude/longitude alvo.</p>
+
+
+    <div class="grid">
+    <section class="panel" id="statusPanel">
+    <div class="status"><span class="dot idle" id="statusDot"></span>
+    <span id="statusText">Aguardando permissão de localização…</span></div>
+    <div class="muted small" id="hint">Dica: funciona em <b>HTTPS</b> ou <b>localhost</b>. Permita acesso à localização quando solicitado.</div>
+    <div id="debug" class="mono small muted" style="margin-top:10px;line-height:1.35"></div>
+    </section>
+
+
+    <section class="panel" id="configPanel">
+    <h3 style="margin-top:0">Configuração (exemplo)</h3>
+    <ul class="muted small" style="margin:0 0 12px 18px">
+    <li>Latitude alvo: <code id="cfgLat"></code></li>
+    <li>Longitude alvo: <code id="cfgLng"></code></li>
+    <li>Raio permitido: <code id="cfgRadius"></code> metros</li>
+    <li>Precisão exigida: <code id="cfgRequiredAcc"></code> metros</li>
+    </ul>
+    <div style="display:flex; gap:8px; flex-wrap:wrap">
+    <button id="btnRequest">Ativar verificação</button>
+    <button id="btnSim" title="Simula entrada na área" class="hidden">Simular dentro da área</button>
+    </div>
+    </section>
+    </div>
+
+
+    <section id="content" class="panel hidden success" style="margin-top:16px">
+    <h3 style="margin-top:0">✅ Conteúdo liberado</h3>
+    <p>Você está dentro da área autorizada. Agora pode acessar os recursos protegidos.</p>
+    <div style="display:flex; gap:8px; flex-wrap:wrap">
+    <button onclick="alert('Ação confidencial executada!')">Executar ação</button>
+    <button onclick="window.location.href='restricted-area.html'">Ir para página restrita</button>
+    </div>
+    </section>
+
+
+    <section id="blocked" class="panel error" style="margin-top:16px">
+    <h3 style="margin-top:0">⛔ Conteúdo bloqueado</h3>
+    <p>Para acessar, esteja a <b><span id="needRadius"></span>m</b> do ponto alvo. Sua distância atual será atualizada automaticamente quando a localização estiver disponível.</p>
+    </section>
+
+
+    <p class="small muted" style="margin-top:14px">Privacidade: a sua localização é processada apenas no seu navegador. Nada é enviado a servidores neste exemplo.</p>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
