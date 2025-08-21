@@ -1,9 +1,3 @@
-<!-- CASA lat:-22.391939, lng:-41.783559 
- UPA lat:-22.356046, lng:-41.769842 
- MIRANTE lat:-22.773328, lng:-41.879568
- PRAIA lat:-22.778823, lng:-41.904344
- -->
-<!-- index.html -->
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -17,30 +11,26 @@
     <div class="card">
       <h1>Roteiro Especial 💖</h1>
       <div id="status" class="status">Aguardando permissão de localização…</div>
-      <div id="hint" class="status">Dica: Foi o nosso melhor encontro, Indiscutivelmente.</div>
+      <div id="hint" class="status">Dica: O lugar onde você me ofereceu uma bala.</div>
       <button id="btnStart">Ativar verificação</button>
       <div id="actions" class="hidden">
         <button id="btnArrived" class="hidden">Cheguei ao Local</button>
         <div id="poem" class="hidden" style="margin-top:16px;">
-            <p>quero ter você</p>
-            <p>custe o que custar</p>
-            <p>pela vida inteira</p>
-            <p>sonho com você</p>
-            <p>dona do meu lar</p>
-            <p>minha companheira</p>
-            <p>vou te prometer</p>
-            <p>posso até jurar</p>
-            <p>na felicidade</p>
-            <p>você vai viver</p>
-            <p>você vai gozar</p>
-            <p>meu amor de verdade</p>
+            <p>Um beijo ficou na lembrança</p>
+            <p>Deixando um desejo</p>
+            <p>Nem sei o que dizer</p>
+            <p>E agora perdi a cabeça</p>
+            <p>E a hora não passa</p>
+            <p>Em todos os lugares só vejo você</p>
         </div>
         <button id="btnNext" class="hidden">Ir para próxima dica</button>
       </div>
+      
     </div>
   </div>
   <script>
-    const point = {lat:-22.356046, lng:-41.769842, radius:50, requiredAccuracy:200};
+    const point = {lat:-22.391939, lng:-41.783559, radius:50, requiredAccuracy:200};
+    //const point = {lat:-22.356046, lng:-41.769842, radius:50, requiredAccuracy:200};
     const statusEl = document.getElementById('status');
     const hintEl = document.getElementById('hint');
     const btnStart = document.getElementById('btnStart');
