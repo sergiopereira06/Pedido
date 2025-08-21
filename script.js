@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         lat: -22.39204649138872, // latitude
         lng: -41.78362615734, // longitude
         radiusMeters: 120, // raio permitido (m)
-        requiredAccuracy: 100 // só confia no ponto se a precisão (accuracy) for <= este valor (m)
+        requiredAccuracy: 200 // só confia no ponto se a precisão (accuracy) for <= este valor (m)
     };
 
 
@@ -152,4 +152,5 @@ document.addEventListener('DOMContentLoaded', function() {
 } else {
   console.error("Geolocalização não é suportada por este navegador.");
 }
+
 })
