@@ -2,6 +2,9 @@
  UPA lat:-22.356046, lng:-41.769842 
  MIRANTE lat:-22.773328, lng:-41.879568
  PRAIA lat:-22.778823, lng:-41.904344
+
+ casa larissa lat:-22.379504, lng:-41.772022
+
  -->
 <!-- index.html -->
 <!doctype html>
@@ -22,25 +25,24 @@
       <div id="actions" class="hidden">
         <button id="btnArrived" class="hidden">Cheguei ao Local</button>
         <div id="poem" class="hidden" style="margin-top:16px;">
-            <p>quero ter você</p>
-            <p>custe o que custar</p>
-            <p>pela vida inteira</p>
-            <p>sonho com você</p>
-            <p>dona do meu lar</p>
-            <p>minha companheira</p>
-            <p>vou te prometer</p>
-            <p>posso até jurar</p>
-            <p>na felicidade</p>
-            <p>você vai viver</p>
-            <p>você vai gozar</p>
-            <p>meu amor de verdade</p>
+            <p>Quem diria que um dia de dor seria o início de algo tão bonito?</p>
+            <p>Foi ali, na <strong>UPA da Barra</strong>, entre o cansaço e o cuidado, que nossos olhares se encontraram de verdade.</p>
+            <p>Você lutava contra o mal-estar, e eu só queria te ver bem — sem imaginar que, naquele instante, era o meu coração que começava a se render.</p>
+            <p>Esperamos por tanto tempo… você quis ir embora, e eu pedi só mais dez minutos.</p>
+            <p>Foram doze — cada minuto que passava só aumentava a vontade de ficar ao seu lado, compartilhando aquele instante que parecia feito pra nós.</p>
+            <p>No fim, não teve consulta, mas teve <strong>café</strong>, <strong>risadas</strong> e um começo.</p>
+            <p>Um começo leve, sincero e inesperado.</p>
+            <p>Obrigado, <strong>UPA</strong>, por ter sido o cenário de um encontro que o acaso escreveu — e que o amor transformou em história.</p>
         </div>
         <button id="btnNext" class="hidden">Ir para próxima dica</button>
       </div>
     </div>
   </div>
   <script>
-    const point = {lat:-22.356046, lng:-41.769842, radius:50, requiredAccuracy:200};
+    // teste casa larissa
+    const point = {lat:-22.379504, lng:-41.772022, radius:50, requiredAccuracy:200};
+    // real
+    //const point = {lat:-22.356046, lng:-41.769842, radius:50, requiredAccuracy:200};
     const statusEl = document.getElementById('status');
     const hintEl = document.getElementById('hint');
     const btnStart = document.getElementById('btnStart');

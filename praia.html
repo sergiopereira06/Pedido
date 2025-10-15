@@ -16,26 +16,31 @@
       <div id="actions" class="hidden">
         <button id="btnArrived" class="hidden">Cheguei ao Local</button>
         <div id="poem" class="hidden" style="margin-top:16px;">
-            <p>Um beijo ficou na lembrança</p>
-            <p>Deixando um desejo</p>
-            <p>Nem sei o que dizer</p>
-            <p>E agora perdi a cabeça</p>
-            <p>E a hora não passa</p>
-            <p>Em todos os lugares só vejo você</p>
+            <p>Naquele dia na praia, sentados, apreciando o mar, tudo parecia perfeito.</p>
+            <p>O vento, o som das ondas e o céu formavam o cenário perfeito para nós dois.</p>
+            <p>Então, você me ofereceu uma bala Halls e, provocando, colocou na boca… e foi ali, naquele instante, que aconteceu nosso <strong>primeiro beijo</strong>.</p>
+            <p>Ficamos nos beijando, nos curtindo, com o mundo inteiro desaparecendo ao nosso redor.</p>
+            <br><br><br>
+            <p><em>🎶🎵<br> 
+            Um beijo ficou na lembrança<br>
+            Deixando um desejo<br>
+            Nem sei o que dizer<br>
+            E agora perdi a cabeça<br>
+            E a hora não passa<br>
+            Em todos os lugares só vejo você<br>
+            🎵🎶</em></p>
+
         </div>
-        <button id="btnNext" class="hidden">Ir para próxima dica</button>
       </div>
       
     </div>
   </div>
   <script>
-    const point = {lat:-22.391939, lng:-41.783559, radius:50, requiredAccuracy:200};
-    //const point = {lat:-22.356046, lng:-41.769842, radius:50, requiredAccuracy:200};
+    const point = {lat:-22.356046, lng:-41.769842, radius:50, requiredAccuracy:200};
     const statusEl = document.getElementById('status');
     const hintEl = document.getElementById('hint');
     const btnStart = document.getElementById('btnStart');
     const btnArrived = document.getElementById('btnArrived');
-    const btnNext = document.getElementById('btnNext');
     const actions = document.getElementById('actions');
     const poemEl = document.getElementById('poem');
 
@@ -96,16 +101,12 @@
     btnArrived.addEventListener('click', ()=>{
         if(!poemShown){
             poemEl.classList.remove('hidden');
-            btnNext.classList.remove('hidden');
             btnArrived.classList.add('hidden');
             statusEl.classList.add('hidden');
             poemShown = true;
         }
     });
 
-    btnNext.addEventListener('click', ()=>{
-      window.location.href = 'mirante.html';
-    });
   </script>
 </body>
 </html>
