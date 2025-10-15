@@ -1,0 +1,123 @@
+<!-- CASA lat:-22.391939, lng:-41.783559 
+ UPA lat:-22.356046, lng:-41.769842 
+ MIRANTE lat:-22.773328, lng:-41.879568
+ PRAIA lat:-22.778823, lng:-41.904344
+
+ casa larissa lat:-22.379504, lng:-41.772022
+
+ -->
+<!-- index.html -->
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pedido de Namoro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Roteiro Especial 💖</h1>
+      <div id="status" class="status">Aguardando permissão de localização…</div>
+      <div id="hint" class="status">Dica: Foi o nosso melhor encontro, Indiscutivelmente.</div>
+      <button id="btnStart">Ativar verificação</button>
+      <div id="actions" class="hidden">
+        <button id="btnArrived" class="hidden">Cheguei ao Local</button>
+        <div id="poem" class="hidden" style="margin-top:16px;">
+            <p>Quem diria que um dia de dor seria o início de algo tão bonito?</p>
+            <p>Foi ali, na <strong>UPA da Barra</strong>, entre o cansaço e o cuidado, que nossos olhares se encontraram de verdade.</p>
+            <p>Você lutava contra o mal-estar, e eu só queria te ver bem — sem imaginar que, naquele instante, era o meu coração que começava a se render.</p>
+            <p>Esperamos por tanto tempo… você quis ir embora, e eu pedi só mais dez minutos.</p>
+            <p>Foram doze — cada minuto que passava só aumentava a vontade de ficar ao seu lado, compartilhando aquele instante que parecia feito pra nós.</p>
+            <p>No fim, não teve consulta, mas teve <strong>café</strong>, <strong>risadas</strong> e um começo.</p>
+            <p>Um começo leve, sincero e inesperado.</p>
+            <p>Obrigado, <strong>UPA</strong>, por ter sido o cenário de um encontro que o acaso escreveu — e que o amor transformou em história.</p>
+        </div>
+        <button id="btnNext" class="hidden">Ir para próxima dica</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    // teste casa larissa
+    const point = {lat:-22.379504, lng:-41.772022, radius:50, requiredAccuracy:200};
+    // real
+    //const point = {lat:-22.356046, lng:-41.769842, radius:50, requiredAccuracy:200};
+    const statusEl = document.getElementById('status');
+    const hintEl = document.getElementById('hint');
+    const btnStart = document.getElementById('btnStart');
+    const btnArrived = document.getElementById('btnArrived');
+    const btnNext = document.getElementById('btnNext');
+    const actions = document.getElementById('actions');
+    const poemEl = document.getElementById('poem');
+
+    let arrived = false;   // Usuário entrou no raio do ponto
+    let poemShown = false; // Usuário clicou em “Cheguei ao Local”
+
+    function haversine(lat1, lon1, lat2, lon2){
+      const R = 6371e3;
+      const toRad = v => v * Math.PI/180;
+      const dLat = toRad(lat2-lat1);
+      const dLon = toRad(lon2-lon1);
+      const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
+      const c = 2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return R*c;
+    }
+
+    function updatePosition(position){
+        if(!position || !position.coords) return;
+        const {latitude, longitude, accuracy} = position.coords;
+        if(typeof latitude !== 'number' || typeof longitude !== 'number') return;
+
+        const dist = haversine(latitude, longitude, point.lat, point.lng);
+
+        if(accuracy > point.requiredAccuracy){
+            statusEl.textContent = `Precisão insuficiente (±${Math.round(accuracy)}m). Aguardando sinal melhor…`;
+            return;
+        }
+
+        if(dist <= point.radius){
+            statusEl.textContent = `Você chegou ao destino!`;
+
+            if(!arrived){ // Executa apenas uma vez
+                hintEl.classList.add('hidden'); // oculta dica inicial
+                btnStart.classList.add('hidden'); // oculta botão iniciar
+                btnArrived.classList.remove('hidden'); // exibe botão Cheguei ao Local
+                arrived = true;
+            }
+
+        } else {
+            statusEl.textContent = `Distância aproximada até o local: ${dist.toFixed(1)} m`;
+        }
+    }
+
+    function startWatch(){
+      if(!navigator.geolocation){
+        statusEl.textContent = 'Geolocalização não suportada neste navegador.';
+        return;
+      }
+      btnStart.disabled = true;
+      actions.classList.remove('hidden');
+      navigator.geolocation.watchPosition(updatePosition, err => {
+        statusEl.textContent = 'Erro ao obter localização.';
+      }, {enableHighAccuracy:true, maximumAge:1000, timeout:15000});
+    }
+
+    btnStart.addEventListener('click', startWatch);
+
+    btnArrived.addEventListener('click', ()=>{
+        if(!poemShown){
+            poemEl.classList.remove('hidden');
+            btnNext.classList.remove('hidden');
+            btnArrived.classList.add('hidden');
+            statusEl.classList.add('hidden');
+            poemShown = true;
+        }
+    });
+
+    btnNext.addEventListener('click', ()=>{
+      window.location.href = 'mirante.html';
+    });
+  </script>
+</body>
+</html>
