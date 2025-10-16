@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Roteiro Especial</title>
+  <title>Pedido de Namoro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,29 +21,37 @@
     const hintEl = document.getElementById('hint');
     const btnGo = document.getElementById('btnGo');
 
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1; // Janeiro = 0
-    const day = today.getDate();
+    const now = new Date();
 
-    const hintStartDay = 17; // dia que começa a aparecer dica
-    const startDay = 18; // dia que o botão habilita
-    const hintText = "Escolhi este dia porque será um dia de sorte, onde nossa história dará um passo à frente. Nossos números de sorte juntos formam a chave de um momento que lembraremos para sempre como o início do nosso namoro."
+    // 🗓️ Datas de controle
+    const releaseDate = new Date(2025, 9, 18, 6, 12); // 18/10/2025 às 06:12
+    const day18Start = new Date(2025, 9, 18, 0, 0);   // 18/10/2025 às 00:00
+    const hintDate = new Date(2025, 9, 17, 0, 0);     // 17/10/2025 às 00:00
 
-    if (month === 10) { // Outubro
-      if (day >= startDay) {
-        messageEl.textContent = "O momento chegou! 🌟";
-        btnGo.disabled = false;
-        btnGo.addEventListener('click', () => {
-          window.location.href = 'upa.html';
-        });
-      } else if (day >= hintStartDay) {
-        messageEl.textContent = "Falta pouco…";
-        hintEl.textContent = hintText ;
-        hintEl.classList.remove('hidden');
-      }
+    const hintText = "Escolhi este dia porque será um dia de sorte, onde nossa história dará um passo à frente. Nossos números de sorte juntos formam a chave de um momento que lembraremos para sempre como o início do nosso namoro.";
+
+    if (now >= releaseDate) {
+      // 🌟 Liberação total
+      messageEl.textContent = "O momento chegou! 🌟";
+      btnGo.disabled = false;
+      btnGo.addEventListener('click', () => {
+        window.location.href = 'upa.html';
+      });
+    } else if (now >= day18Start && now < releaseDate) {
+      // ⏰ Está no dia, mas antes da hora
+      messageEl.textContent = "Faltam algumas horas..."
+      hintEl.textContent = "Assim como os números da sorte indicam o dia, também indicam o horário… ⏳";
+      hintEl.classList.remove('hidden');
+      
+    } else if (now >= hintDate) {
+      // 💬 Mostra a dica no dia 17
+      messageEl.textContent = "Falta pouco…";
+      hintEl.textContent = hintText;
+      hintEl.classList.remove('hidden');
+    } else {
+      // 🕰️ Antes do dia 17
+      messageEl.textContent = "Aguardando o dia…";
     }
   </script>
 </body>
 </html>
-
